@@ -203,7 +203,7 @@ const CreateProduct = ({
               marginBottom: 100,
             }}
           >
-            <Text>Selected Category</Text>
+            <Text>Selected Category: {selectedCategory}</Text>
             <FlatList
               style={{ marginTop: 10 }}
               showsHorizontalScrollIndicator={false}

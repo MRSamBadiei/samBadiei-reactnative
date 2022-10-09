@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FlatList,
   Image,
@@ -37,6 +37,14 @@ export default function TabOneScreen({
   const products: Products[] = useAppSelector((state) => state.products.filter);
   const categories: Category[] = useAppSelector((state) => state.category);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const scrollRef = useRef<FlatList>(null);
+
+  const onPressTouch = () => {
+    scrollRef.current?.scrollToOffset({
+      offset: 0,
+      animated: true,
+    });
+  };
 
   useEffect(() => {
     axiosInstance.get(BASE_URL_PRODUCTS).then((res) => {
@@ -112,6 +120,7 @@ export default function TabOneScreen({
     return (
       <TouchableOpacity
         onPress={() => {
+          onPressTouch();
           setSelectedCategory(item.name);
         }}
         key={index}
@@ -167,6 +176,7 @@ export default function TabOneScreen({
         </View>
         <View style={{ padding: 10, marginTop: 3 }}>
           <FlatList
+            ref={scrollRef}
             showsVerticalScrollIndicator={false}
             data={products}
             numColumns={2}
