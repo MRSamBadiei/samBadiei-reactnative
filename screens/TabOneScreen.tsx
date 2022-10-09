@@ -90,7 +90,12 @@ export default function TabOneScreen({
         <View style={{ padding: 10 }}>
           <Image
             source={{ uri: item.avatar }}
-            style={{ width: 150, height: 150 }}
+            style={{
+              width: 150,
+              height: 150,
+              alignSelf: "center",
+              borderRadius: 10,
+            }}
           />
         </View>
 
